@@ -1,0 +1,11 @@
+language: nodejs
+
+before_script:
+  - npm run setup
+  - npm run build
+
+script:
+  - npm run test-coverage
+
+after_success:
+  - npm run report-coverage
