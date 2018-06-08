@@ -2,7 +2,7 @@ import {Lynx} from './lynx-types'
 
 export function expressMeddler():(req:any, res:any, next:any) => any { //TODO
 
-    var  options = {host: 'localhost', port: 32768,requestKey : ''};
+   var  options = {host: 'localhost', port: 32773,requestKey : ''};
 
    var client = new Lynx(options.host, options.port, options);
 

@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "express-statsd": "^0.3.0",
-    "lynx": "^0.2.0"
+    "lynx": "^0.2.0",
+    "reflect-metadata": "^0.1.12"
   }
 }
