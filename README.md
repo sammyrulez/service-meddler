@@ -1,4 +1,4 @@
-# service-meddler
+# Service Meddler
 
 *statd* support for node appplications written in _typescript_
 
