@@ -3,7 +3,7 @@ import "reflect-metadata";
 import {Lynx} from './lynx-types'
 
 
-var  options = {host: 'localhost', port: 32773,requestKey : ''};
+var  options = {host: 'localhost', port: 8125,requestKey : ''};
 var client = new Lynx(options.host, options.port);
 
 export function timer(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<Function>) {
@@ -13,34 +13,33 @@ export function timer(target: any, propertyName: string, descriptor: TypedProper
     descriptor.value = function () {
         var startTime = new Date().getTime();
         const outVal = method.apply(this, arguments);
-        var duration = 1 + startTime - new Date().getTime(); ;
+        var duration = 1 +  new Date().getTime() - startTime; 
      
         const key = method.name ;
-        console.log("timer "+ propertyName + " "+ key +  " end " + duration + " ms");
         client.timing(key, duration);
         return outVal;
     }
 }
-
-
-class C {
-
-    @timer
-    calcFibonacci(top:number):void {
-        function calculate(i : number) : number{
-            return (i <= 2) ? 1 : calculate(i -1 ) + calculate(i -2);		
-        }
-
-        const calO = calculate(top);
-
+//TODO config application prefix
+export function count(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<Function>) {
+   
+    let method = descriptor.value;
+    
+    descriptor.value = function () {
+       
+        const outVal = method.apply(this, arguments);
+        const key = method.name ;
+        client.increment(key)
+        return outVal;
     }
 }
 
-const c = new C()
-let list = [11,12,16,18,20,11,12,16,18,20,11,12,16,18,20,11,12,16,18,20,11,12,16,18,20,11,12,16,18,20,11,12,16,18,20,11,12,16,18,20];
- while(true)
-    for (let i of list) {
-        console.log(i); 
-        c.calcFibonacci(i);
-    }
-    
+//TODO config application prefix
+export function countKey(value: string) {
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        client.increment(value)
+    };
+}
+
+
+

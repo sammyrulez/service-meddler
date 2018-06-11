@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as meddler from './express-meddler';
+import { timer, count, countKey } from './meddler';
 //import {statsd} from './lynx-types'
 
 
@@ -39,6 +40,38 @@ class App {
         message: 'Hello World!'
       });
     });
+    router.get('/fib', (req, res, next) => {
+
+      class C {
+
+        @timer
+        calcFibonacci(top:number):number {
+            function calculate(i : number) : number{
+                return (i <= 2) ? 1 : calculate(i -1 ) + calculate(i -2);		
+            }
+    
+            return calculate(top);
+    
+        }
+
+        @count
+        genericHit():void{
+            console.log("genericHit")
+        }
+
+        @countKey("customkey_me")
+        specificHit():void{
+          console.log("specificHit")
+        }
+    }
+    
+    const c = new C()
+    let list = [11,32,36,39,20,41].map(c.calcFibonacci);
+    c.genericHit();
+    c.specificHit();
+      res.json(list);
+    });
+
     this.express.use('/', router);
   }
 
