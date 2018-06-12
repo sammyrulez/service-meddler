@@ -1,5 +1,6 @@
 # <img src="https://png.icons8.com/color/50/000000/old-woman-skin-type-3.png" align="left" valign="middle"> Service Meddler
 
+[![Build Status](https://travis-ci.org/sammyrulez/service-meddler.svg?branch=master)](https://travis-ci.org/sammyrulez/service-meddler)
 
 *statd* support for node appplications written in _typescript_
 
