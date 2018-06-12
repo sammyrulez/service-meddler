@@ -1,4 +1,4 @@
-# ![Icon pack by Icons8](https://png.icons8.com/color/50/000000/old-woman-skin-type-3.png "Service Meddler ") 
+# ![Icon pack by Icons8](https://png.icons8.com/color/50/000000/old-woman-skin-type-3.png "Icon pack by Icons8") Service Meddler
 
 
 *statd* support for node appplications written in _typescript_
