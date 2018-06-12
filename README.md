@@ -1,4 +1,5 @@
-# Service Meddler
+# ![Icon pack by Icons8](https://png.icons8.com/color/50/000000/old-woman-skin-type-3.png "Service Meddler ") 
+
 
 *statd* support for node appplications written in _typescript_
 
@@ -14,7 +15,8 @@ import *  as meddler from './meddler';
 
 ...
 
- meddler.configure("localhost",8125,"demoNodeApp") // host and port of the statd server and the name of the application 
+ meddler.configure("localhost",8125,"demoNodeApp") 
+ // host and port of the statd server and the name of the application 
 
 ```
 
