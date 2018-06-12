@@ -1,8 +1,7 @@
 {
   "name": "service-meddler",
   "version": "1.0.0",
-  "description": "Detailed statd reporte as Express middleware",
-  "main": "index.js",
+  "description": "Statd support for node appplications written in typescript",
   "scripts": {
     "setup": "npm install",
     "build": "tsc",
@@ -43,7 +42,6 @@
     "mocha": "^5.2.0",
     "node-mocks-http": "^1.7.0",
     "nyc": "^11.8.0",
-    "sinon": "^6.0.0",
     "ts-node": "^6.0.5",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3"

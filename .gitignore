@@ -8,5 +8,6 @@
 /lib/*.js
 /lib/*.js.map
 /lib/*.d.ts
+lib
 .nyc_output
 coverage
