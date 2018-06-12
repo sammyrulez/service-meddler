@@ -3,8 +3,15 @@ import "reflect-metadata";
 import {Lynx} from './lynx-types'
 
 
-var  options = {host: 'localhost', port: 8125,requestKey : ''};
-var client = new Lynx(options.host, options.port);
+var  _configuration = {host: 'localhost', port: 8125,requestKey : ''};
+
+export function configure(hostname:string,portNumber:number, applicationName?:string ) {
+    _configuration = {host: hostname, port: portNumber,requestKey : applicationName != undefined ? applicationName : ''};
+}
+
+export const configuration = _configuration
+
+var client = new Lynx(configuration.host, configuration.port);
 
 export function timer(target: any, propertyName: string, descriptor: TypedPropertyDescriptor<Function>) {
    

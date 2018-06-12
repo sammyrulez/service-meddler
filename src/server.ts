@@ -2,8 +2,9 @@ import * as http from 'http';
 import * as path from 'path';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
-import * as meddler from './express-meddler';
-import { timer, count, countKey } from './meddler';
+import * as meddlerExpress from './express-meddler';
+import *  as meddler from './meddler';
+
 //import {statsd} from './lynx-types'
 
 
@@ -24,8 +25,8 @@ class App {
   private middleware(): void {
     this.express.use(bodyParser.json());
     this.express.use(bodyParser.urlencoded({ extended: false }));
-   // this.express.use(meddler.expressMeddler());
-   this.express.use(meddler.expressMeddler())
+    meddler.configure("localhost",8125,"demoNodeApp")
+   this.express.use(meddlerExpress.middleware())
   }
 
   // Configure API endpoints.
@@ -44,7 +45,7 @@ class App {
 
       class C {
 
-        @timer
+        @meddler.timer
         calcFibonacci(top:number):number {
             function calculate(i : number) : number{
                 return (i <= 2) ? 1 : calculate(i -1 ) + calculate(i -2);		
@@ -54,12 +55,12 @@ class App {
     
         }
 
-        @count
+        @meddler.count
         genericHit():void{
             console.log("genericHit")
         }
 
-        @countKey("customkey_me")
+        @meddler.countKey("customkey_me")
         specificHit():void{
           console.log("specificHit")
         }

@@ -1,17 +1,16 @@
 import {Lynx} from './lynx-types'
+import {configuration} from './meddler'
 
-export function expressMeddler():(req:any, res:any, next:any) => any { //TODO
+export function middleware():(req:any, res:any, next:any) => any { 
 
-   var  options = {host: 'localhost', port: 8125,requestKey : ''};
 
-   var client = new Lynx(options.host, options.port, options);
+   var client = new Lynx(configuration.host, configuration.port, configuration);
 
    return function expressStatsd (req, res, next) {
     var startTime = new Date().getTime();
 
-    // Function called on response finish that sends stats to statsd
     function sendStats() {
-      var key = req[options.requestKey];
+      var key = req[configuration.requestKey];
       key = key ? key + '.' : '';
 
       // Status Code
@@ -25,14 +24,13 @@ export function expressMeddler():(req:any, res:any, next:any) => any { //TODO
       cleanup();
     }
 
-    // Function to clean up the listeners we've added
+
     function cleanup() {
       res.removeListener('finish', sendStats);
       res.removeListener('error', cleanup);
       res.removeListener('close', cleanup);
     }
 
-    // Add response listeners
     res.once('finish', sendStats);
     res.once('error', cleanup);
     res.once('close', cleanup);

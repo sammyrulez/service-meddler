@@ -6,6 +6,18 @@
 
 This project is on an early stage and under heavy development. API can change without notice 
 
+## Configuration
+
+There is a simple factory function  that initialize Meddler globaly
+```javascript
+import *  as meddler from './meddler';
+
+...
+
+ meddler.configure("localhost",8125,"demoNodeApp") // host and port of the statd server and the name of the application 
+
+```
+
 ## Decorators
 
 *   *timer:* method decorator that  cronograph the execution time
@@ -17,9 +29,29 @@ This project is on an early stage and under heavy development. API can change wi
 Automagicaly collects  duration and status for each request
 
 ```javascript
-import * as meddler from './express-meddler';
-    ...
+import * as meddlerExpress from './express-meddler';
+import *  as meddler from './meddler';
+    
+    class App {
+
     public express: express.Application;
-    this.express.use(meddler.expressMeddler())
+
+     constructor() {
+        this.express = express();
+        this.middleware();
+        this.routes();
+    }
+
+    private middleware(): void {
+        meddler.configure("localhost",8125,"demoNodeApp")
+        this.express.use(meddlerExpress.middleware())
+    }
+
+    }
 ```
+
+## Roadmap
+
+*   CPU usage
+*   Memory usage
 
