@@ -1,6 +1,6 @@
 # <img src="https://png.icons8.com/color/50/000000/old-woman-skin-type-3.png" align="left" valign="middle"> Service Meddler
 
-[![Build Status](https://travis-ci.org/sammyrulez/service-meddler.svg?branch=master)](https://travis-ci.org/sammyrulez/service-meddler)
+[![Build Status](https://travis-ci.org/sammyrulez/service-meddler.svg?branch=master)](https://travis-ci.org/sammyrulez/service-meddler) [![Coverage Status](https://coveralls.io/repos/github/sammyrulez/service-meddler/badge.svg?branch=master)](https://coveralls.io/github/sammyrulez/service-meddler?branch=master)
 
 *statd* support for node appplications written in _typescript_
 
