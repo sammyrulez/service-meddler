@@ -5,10 +5,15 @@ import { Response, Request, Express } from 'express';
 import * as homeController from './example/homeCtr'
 import * as fibonacciController from './example/fibCtr'
 import {createRequest,createResponse} from 'node-mocks-http' 
+import * as middleware from "./express-meddler";
+import *  as meddler from './meddler';
+
 
 describe('Controller requests', function () {
 
     it('should emit response time and status ', async function () {
+
+     
        
         var request  = createRequest({
             method: 'GET',
@@ -33,5 +38,20 @@ describe('Controller requests', function () {
             fibonacciController.fibCtr()(request, createResponse());
          
 
+    });
+
+});
+
+describe('Middleware ', function () {
+    meddler.configure("localhost",8125)
+    meddler.configure("localhost",8125,"demoNodeApp")
+    it('should record time and status ', async function () {
+        var request  = createRequest({
+            method: 'GET',
+            url: '/fib',
+            params: {
+            }
+        });
+        middleware.middleware()(request,createResponse(),null);
     });
 });

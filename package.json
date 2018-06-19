@@ -11,6 +11,22 @@
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
     "start-server": "node --experimental-modules lib/server.js"
   },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "**/*.js",
+      "**/*.spec.ts ",
+      "**/*express-meddler.ts"
+    ],
+    "reporter": [
+      "html"
+    ],
+    "all": true  
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/sammyrulez/service-meddler.git"

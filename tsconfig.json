@@ -1,22 +1,18 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "pretty": true,
-        "sourceMap": true,
+        "target": "ES6",
+        "experimentalDecorators": true,
+        "module": "esnext",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
         "outDir": "./lib/",
-        "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "sourceMap": true
     },
     "include": [
-        "src/**/*.ts"
+        "src/**/*"
     ],
     "exclude": [
-        "**/*.spec.ts",
-        "exa"
+        "**/*.spec.ts"
     ]
 }

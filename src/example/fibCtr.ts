@@ -20,7 +20,7 @@ export function fibCtr() {
         }
       }
       const c = new C();
-      let list = [11, 32, 36, 39].map(c.calcFibonacci);
+      let list = [11, 12, 6, 9].map(c.calcFibonacci);
       c.genericHit();
       c.specificHit();
       res.json(list);
