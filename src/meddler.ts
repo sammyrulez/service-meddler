@@ -28,25 +28,23 @@ export function startSysStats(interval:number) {
  
     
     _configuration.timer =  setInterval( function () { //todo worker?
-         pidusage(process.pid,function(err:any, stats:any) { //todo types
-            //console.log(stats)
-            if (err) {
-              return;
-            }
-            const memory = stats.memory / 1024 / 1024;
-            const load = loadavg();  
+        
+            const memory = process.memoryUsage().heapTotal / 1024 / 1024;
+            const elapUsage = process.cpuUsage()
+            var elapUserMS = secNSec2ms(elapUsage.user)
+            var elapSystMS = secNSec2ms(elapUsage.system)
+            var cpuPercent = Math.round(100 * (elapUserMS + elapSystMS) / interval)
             client.timing("memoryUsage", memory);
-            client.timing("cpuUsage", load);
-            console.log("ding")
-        })}, interval)
+            client.timing("cpuUsage", cpuPercent);
+            console.log("ding " +  memory + " " + cpuPercent )
+        }, interval)
         
         console.log("timer " + _configuration.timer )
-      
-
-   
-        
-
 }
+
+function secNSec2ms (secNSec:number) {
+    return secNSec / 1000000
+  }
 
 export function stopSysStats() {
    
