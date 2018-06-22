@@ -25,7 +25,7 @@
     "reporter": [
       "html"
     ],
-    "all": true  
+    "all": true
   },
   "repository": {
     "type": "git",
@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "lynx": "^0.2.0",
+    "pidusage": "^2.0.10",
     "reflect-metadata": "^0.1.12"
   }
 }

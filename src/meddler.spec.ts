@@ -9,6 +9,7 @@ import * as middleware from "./express-meddler";
 import *  as meddler from './meddler';
 
 
+
 describe('Controller requests', function () {
 
     it('should emit response time and status ', async function () {
@@ -36,8 +37,6 @@ describe('Controller requests', function () {
         });
             var expectedModels = [{}, {}];
             fibonacciController.fibCtr()(request, createResponse());
-         
-
     });
 
 });
@@ -54,4 +53,23 @@ describe('Middleware ', function () {
         });
         middleware.middleware()(request,createResponse(),null);
     });
+});
+
+
+describe('CPU load and memory usage ', function () {
+    
+    it('should be tracked as system resources', async function () {
+        meddler.startSysStats(10);
+    });
+
+ 
+    after(async function() {
+        setTimeout(function(){
+            console.log("BASTAAAAAAA")
+              meddler.stopSysStats();
+          
+        },1000) 
+      
+      });
+    
 });

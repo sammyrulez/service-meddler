@@ -57,4 +57,5 @@ import *  as meddler from './meddler';
 
 *   CPU usage
 *   Memory usage
+*   Support for *hapi*
 
