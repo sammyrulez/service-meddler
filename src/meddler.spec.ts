@@ -13,8 +13,6 @@ import *  as meddler from './meddler';
 describe('Controller requests', function () {
 
     it('should emit response time and status ', async function () {
-
-     
        
         var request  = createRequest({
             method: 'GET',
@@ -65,7 +63,7 @@ describe('CPU load and memory usage ', function () {
  
     after(async function() {
         setTimeout(function(){
-            console.log("BASTAAAAAAA")
+            
               meddler.stopSysStats();
           
         },1000) 

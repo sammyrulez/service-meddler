@@ -5,6 +5,7 @@ export function middleware():(req:any, res:any, next:any) => any {
 
 
    var client = new Lynx(configuration.host, configuration.port, configuration);
+   
 
    return function expressStatsd (req, res, next) {
     var startTime = new Date().getTime();

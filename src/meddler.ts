@@ -14,8 +14,10 @@ class EmptyTimer implements NodeJS.Timer{
 
 var  _configuration = {host: 'localhost', port: 8125,requestKey : '', timer: new EmptyTimer() }; //
 
-export function configure(hostname:string,portNumber:number, applicationName?:string ) {
+export function configure(hostname:string,portNumber:number, applicationName?:string, recordSysStats:boolean = false ) {
     _configuration = {host: hostname, port: portNumber,requestKey : applicationName != undefined ? applicationName : '', timer:null};
+    if(recordSysStats)
+        startSysStats(1000);
 }
 
 export const configuration = _configuration
@@ -23,10 +25,7 @@ export const configuration = _configuration
 var client = new Lynx(configuration.host, configuration.port);
 
 export function startSysStats(interval:number) {
-    
-
- 
-    
+        
     _configuration.timer =  setInterval( function () { //todo worker?
         
             const memory = process.memoryUsage().heapTotal / 1024 / 1024;
@@ -36,10 +35,10 @@ export function startSysStats(interval:number) {
             var cpuPercent = Math.round(100 * (elapUserMS + elapSystMS) / interval)
             client.timing("memoryUsage", memory);
             client.timing("cpuUsage", cpuPercent);
-            console.log("ding " +  memory + " " + cpuPercent )
+           
         }, interval)
         
-        console.log("timer " + _configuration.timer )
+      
 }
 
 function secNSec2ms (secNSec:number) {
