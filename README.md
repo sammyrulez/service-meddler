@@ -53,9 +53,14 @@ import *  as meddler from './meddler';
     }
 ```
 
+## Using a reporting service
+
+You can send statd data to a rapero server like _Graphite_ and _Grafana_ and monitor your service stats in real time
+
+<div align="center">
+    <img src="https://s5.postimg.cc/h8qho7svr/grafana.png">
+</div>
 ## Roadmap
 
-*   CPU usage
-*   Memory usage
 *   Support for *hapi*
 

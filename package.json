@@ -9,7 +9,7 @@
     "test": "cross-env TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\" }' mocha -r ts-node/register -r ignore-styles -r jsdom-global/register src/**/*.spec.ts",
     "test-coverage": "nyc --reporter=html --reporter=text cross-env TS_NODE_COMPILER_OPTIONS='{ \"module\": \"commonjs\" }' mocha -r ts-node/register -r ignore-styles -r jsdom-global/register src/**/*.spec.ts",
     "report-coverage": "nyc report --reporter=text-lcov | coveralls",
-    "start-server": "node --experimental-modules lib/server.js"
+    "start-server": "node --experimental-modules lib/example/server.js"
   },
   "nyc": {
     "extension": [

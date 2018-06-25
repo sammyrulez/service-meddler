@@ -1,7 +1,8 @@
 import *  as meddler from '../meddler';
+import {NextFunction, Request, Response, Router} from "express";
 
 export function fibCtr() {
-    return (req:any, res:any) => {
+    return (req: Request, res: Response) => {
       class C {
         @meddler.timer
         calcFibonacci(top: number): number {
@@ -19,10 +20,17 @@ export function fibCtr() {
           console.log("specificHit");
         }
       }
-      const c = new C();
-      let list = [11, 12, 6, 9].map(c.calcFibonacci);
-      c.genericHit();
-      c.specificHit();
-      res.json(list);
+  
+        if(req.param("ERROR") != undefined){
+          console.log("I'm an error")
+          res.status(403);
+          res.json({message:"Error"})
+        }else{
+            const c = new C();
+            let list = [11, 12, 6, 9].map(c.calcFibonacci);
+            c.genericHit();
+            c.specificHit();
+            res.json(list);
+      }
     };
   }
